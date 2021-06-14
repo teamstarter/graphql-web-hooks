@@ -14,7 +14,7 @@ async function startServer() {
 
   const pubSubInstance = new PubSub()
 
-  const server = await getApolloServer(config, { pubSubInstance }, null, ({ eventSecurityContext, eventType, webhook }) => {
+  const server = await getApolloServer(config, { pubSubInstance }, {}, ({ eventSecurityContext, eventType, webhook }) => {
     console.log({ eventSecurityContext, eventType, webhook })
   })
 

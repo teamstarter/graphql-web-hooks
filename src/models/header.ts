@@ -28,11 +28,5 @@ export default function Header(sequelize: any) {
       paranoid: true,
     }
   )
-  Header.associate = function (models: any) {
-    models.header.belongsTo(models.webhook, {
-      foreignKey: 'webhookId',
-      sourceKey: 'id',
-    })
-  }
   return Header
 }

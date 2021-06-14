@@ -29,5 +29,14 @@ export default function Webhook(sequelize: any) {
       paranoid: true,
     }
   )
+
+  Webhook.associate = function (models: any) {
+    models.webhook.hasMany(models.header, {
+      as: 'headers',
+      foreignKey: 'webhookId',
+      sourceKey: 'id',
+    })
+  }
+
   return Webhook
 }

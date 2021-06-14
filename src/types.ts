@@ -16,3 +16,9 @@ export type Webhook = {
   eventTypesWhitelist: JSONValue
   securityMetadata: JSONValue
 }
+
+export type Header = {
+  id: number
+  key: string
+  value: string
+}

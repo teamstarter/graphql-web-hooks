@@ -4,14 +4,18 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
+    "apollo-link-http": "^1.5.17",
     "commander": "^7.2.0",
     "graphql": "^15.5.0",
     "graphql-sequelize-generator": "^7.3.5",
+    "node-fetch": "^2.6.1",
     "sequelize": "^6.6.2",
     "umzug": "^2.3.0"
   },
   "devDependencies": {
+    "@types/node-fetch": "^2.5.4",
     "graphql-relay": "^0.7.0",
     "graphql-sequelize": "^9.4.3",
     "jest": "^27.0.4",
