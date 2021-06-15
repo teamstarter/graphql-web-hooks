@@ -1,12 +1,13 @@
 import { Event } from './types'
 import ApolloClient from 'apollo-client'
 import gql from 'graphql-tag'
+import fetch from 'node-fetch'
 
 import { Header } from './types'
 
-const webhook = gql`
-  mutation webhook($typeList: [String!]!, $workerId: String) {
-    webhook(typeList: $typeList, workerId: $workerId) {
+const acquireWebhook = gql`
+  mutation acquireWebhook($eventSecurityContext: JSON!, $eventType: String!) {
+    acquireWebhook(eventSecurityContext: $eventSecurityContext, eventType: $eventType) {
       url
       headers {
         key
@@ -16,29 +17,30 @@ const webhook = gql`
   }
 `
 
-
-export default async function callWebhook({ type, eventSecurityContext, data }: Event,  client: ApolloClient<any>) {
-  try {
-    const response = await client.query({
-      query: webhook,
-      variables: { type, eventSecurityContext },
-    })
-
-    const url = response.data.url
-    const headers = response.data.headers.reduce((acc: any, header: Header) => {
+export default async function callWebhook({ eventType, eventSecurityContext, data }: Event,  client: ApolloClient<any>) {
+  const response = await client.mutate({
+    mutation: acquireWebhook,
+    variables: { eventType, eventSecurityContext },
+  })
+  
+  if (!response.errors) {
+    const url = response.data.acquireWebhook.url
+    const headers = response.data.acquireWebhook.headers.reduce((acc: any, header: Header) => {
       acc[header.key] = header.value
       return acc
     }, {})
-
-    fetch(url, {
-      method: 'post',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json',
-        ...headers
-      },
-    })
-
-  } catch (e) {
-
+    
+    try {
+      await fetch(url, {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json',
+          ...headers
+        },
+      })
+  
+    } catch (e) {
+      throw new Error('Error during the request: ' + e)
+    }
   }
 }

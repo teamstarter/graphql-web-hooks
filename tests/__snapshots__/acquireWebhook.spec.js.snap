@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test acquireWebhook endpoint Can fetch webhook 1`] = `
+Object {
+  "acquireWebhook": Object {
+    "headers": Array [
+      Object {
+        "key": "header-key-1",
+        "value": "header-value-1",
+      },
+      Object {
+        "key": "header-key-2",
+        "value": "header-value-2",
+      },
+    ],
+    "url": "https://www.google.com",
+  },
+}
+`;
+
+exports[`Test acquireWebhook endpoint Cannot fetch a webhook if event is not allowed 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "stacktrace": Array [
+          "Error: Event is not allowed for this webhook",
+          "    at Object.call (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:77:35)",
+          "    at step (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:33:23)",
+          "    at Object.next (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:14:53)",
+          "    at fulfilled (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:5:58)",
+        ],
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 2,
+      },
+    ],
+    "message": "Event is not allowed for this webhook",
+    "path": Array [
+      "acquireWebhook",
+    ],
+  },
+]
+`;
+
+exports[`Test acquireWebhook endpoint Cannot fetch a webhook if event is not subscribed to it 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "stacktrace": Array [
+          "Error: This webhook is not subscribe at this event",
+          "    at Object.call (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:73:39)",
+          "    at step (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:33:23)",
+          "    at Object.next (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:14:53)",
+          "    at fulfilled (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:5:58)",
+        ],
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 2,
+      },
+    ],
+    "message": "This webhook is not subscribe at this event",
+    "path": Array [
+      "acquireWebhook",
+    ],
+  },
+]
+`;
+
+exports[`Test acquireWebhook endpoint Cannot fetch inexistent webhook 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "stacktrace": Array [
+          "Error: No webhook found",
+          "    at Object.call (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:69:35)",
+          "    at step (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:33:23)",
+          "    at Object.next (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:14:53)",
+          "    at fulfilled (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:5:58)",
+        ],
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 2,
+      },
+    ],
+    "message": "No webhook found",
+    "path": Array [
+      "acquireWebhook",
+    ],
+  },
+]
+`;
+
+exports[`Test call webhook Can fetch webhook 1`] = `
+Object {
+  "acquireWebhook": Object {
+    "headers": Array [
+      Object {
+        "key": "header-key-1",
+        "value": "header-value-1",
+      },
+      Object {
+        "key": "header-key-2",
+        "value": "header-value-2",
+      },
+    ],
+    "url": "https://www.google.com",
+  },
+}
+`;
+
+exports[`Test call webhook Cannot fetch a webhook if event is not allowed 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "stacktrace": Array [
+          "Error: Event is not allowed for this webhook",
+          "    at Object.call (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:77:35)",
+          "    at step (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:33:23)",
+          "    at Object.next (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:14:53)",
+          "    at fulfilled (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:5:58)",
+        ],
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 2,
+      },
+    ],
+    "message": "Event is not allowed for this webhook",
+    "path": Array [
+      "acquireWebhook",
+    ],
+  },
+]
+`;
+
+exports[`Test call webhook Cannot fetch a webhook if event is not subscribed to it 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "stacktrace": Array [
+          "Error: This webhook is not subscribe at this event",
+          "    at Object.call (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:73:39)",
+          "    at step (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:33:23)",
+          "    at Object.next (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:14:53)",
+          "    at fulfilled (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:5:58)",
+        ],
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 2,
+      },
+    ],
+    "message": "This webhook is not subscribe at this event",
+    "path": Array [
+      "acquireWebhook",
+    ],
+  },
+]
+`;
+
+exports[`Test call webhook Cannot fetch inexistent webhook 1`] = `
+Array [
+  Object {
+    "extensions": Object {
+      "code": "INTERNAL_SERVER_ERROR",
+      "exception": Object {
+        "stacktrace": Array [
+          "Error: No webhook found",
+          "    at Object.call (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:69:35)",
+          "    at step (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:33:23)",
+          "    at Object.next (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:14:53)",
+          "    at fulfilled (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/webhook/acquire.js:5:58)",
+        ],
+      },
+    },
+    "locations": Array [
+      Object {
+        "column": 5,
+        "line": 2,
+      },
+    ],
+    "message": "No webhook found",
+    "path": Array [
+      "acquireWebhook",
+    ],
+  },
+]
+`;

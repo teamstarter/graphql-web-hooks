@@ -6,7 +6,7 @@ export type JSONValue = JSONPrimitive | JSONObject | JSONArray
 
 export type Event = {
   data: JSONValue
-  type: string  
+  eventType: string  
   eventSecurityContext: JSONValue
 }
 

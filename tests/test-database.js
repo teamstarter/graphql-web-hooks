@@ -10,6 +10,7 @@ const {
 
 const { getStandAloneServer, getModels } = require('./../lib/index')
 
+const { isEventAllowed } = require('./tools')
 var dbConfig = require(path.join(__dirname, '/sqliteTestConfig.js')).test
 
 const models = getModels(dbConfig)
@@ -104,10 +105,9 @@ async function closeConnections() {
   await models.sequelize.close()
 }
 
-exports.closeEverything = async (mainServer, models, done) => {
+exports.closeEverything = async (mainServer, models) => {
   await new Promise((resolve) => mainServer.close(() => resolve()))
   await closeConnections(models)
-  done()
 }
 
 exports.getNewServer = () => {
@@ -137,6 +137,7 @@ exports.getNewServer = () => {
           return job
         },
       },
-    }
+    },
+    ({ eventSecurityContext, eventType, webhook }) => isEventAllowed({ eventSecurityContext, eventType, webhook })
   )
 }
