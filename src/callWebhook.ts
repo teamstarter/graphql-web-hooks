@@ -1,8 +1,7 @@
-import fetch from 'node-fetch'
-
 import { Event } from './types'
 import { Header } from './types'
 import getModels from './models'
+import { postRequest } from './tools'
 
 export default function getCallWebhook(getMetadataFromContext: any) {
   return async function callWebhook({ eventType, context, data }: Event) {
@@ -12,7 +11,7 @@ export default function getCallWebhook(getMetadataFromContext: any) {
         securityMetadata: getMetadataFromContext(context),
       },
       includes: [
-        { model: models.header },
+        { model: models.header, as: 'headers' },
         {
           model: models.eventType,
           required: true,
@@ -22,17 +21,16 @@ export default function getCallWebhook(getMetadataFromContext: any) {
     })
 
     for (const webhook of webhooks) {
+      const headers = await webhook.getHeaders()
       const url = webhook.url
-      const headers = webhook.headers.reduce((acc: any, header: Header) => {
-        acc[header.key] = header.value
-        return acc
-      }, {})
-
       try {
-        await fetch(url, {
-          method: 'post',
-          body: JSON.stringify(data),
-          headers: { 'Content-Type': 'application/json', ...headers },
+        await postRequest({
+          url,
+          data,
+          headers: headers.reduce((acc: any, header: Header) => {
+            acc[header.key] = header.value
+            return acc
+          }, {}),
         })
       } catch (e) {
         throw new Error('Error during the request: ' + e)

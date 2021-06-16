@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test acquireWebhook endpoint Can fetch webhook and associated headers 1`] = `
+exports[`Test webhook endpoint Can fetch webhook and associated headers 1`] = `
 Object {
   "webhook": Array [
     Object {
@@ -20,7 +20,7 @@ Object {
 }
 `;
 
-exports[`Test acquireWebhook endpoint Cannot fetch webhook without the right context 1`] = `
+exports[`Test webhook endpoint Cannot fetch webhook without the right context 1`] = `
 Object {
   "webhook": Array [],
 }

@@ -12,6 +12,8 @@ const {
 } = require('./test-database.js')
 const { getNewClient, callWebhook, getCallWebhook } = require('../lib/index')
 
+const { postRequest } = require('../lib/tools')
+
 // This is the maximum amount of time the band of test can run before timing-out
 jest.setTimeout(600000)
 
@@ -20,26 +22,15 @@ const client = getNewClient(
   `http://localhost:${process.env.PORT || 8080}/graphql`
 )
 
-const wait = (time) => new Promise((resolve) => setTimeout(resolve, time))
-
-const webhook = (variables) => ({
-  query: `query webhook($where: SequelizeJSON) {
-    webhook(where: $where) {
-      url
-      headers {
-        key
-        value
-      }
-    }
-  }`,
-  variables,
-  operationName: null,
-})
+jest.mock('../lib/tools.js', () => ({
+  __esModule: true,
+  postRequest: jest.fn(),
+}))
 
 /**
  * Starting the tests
  */
-describe('Test webhook endpoint', () => {
+describe('Test callWebhook function', () => {
   beforeAll(async () => {
     await migrateDatabase()
     await seedDatabase()
@@ -51,6 +42,7 @@ describe('Test webhook endpoint', () => {
   })
 
   afterEach(async () => {
+    jest.clearAllMocks()
     await deleteTables()
   })
 
@@ -58,20 +50,32 @@ describe('Test webhook endpoint', () => {
     await closeEverything(server, models)
   })
 
-  it('Can fetch webhook and associated headers', async () => {
-    const response = await request(server)
-      .post('/graphql')
-      .set('userId', 1)
-      .send(webhook({}))
+  it('Can call a webhook', async () => {
+    const callWebhook = getCallWebhook((context) => context)
 
-    expect(response.body.errors).toBeUndefined()
-    expect(response.body.data).toMatchSnapshot()
+    await callWebhook({
+      eventType: 'publish',
+      context: { userId: 1 },
+      data: {
+        key: 'value',
+      },
+    })
+
+    expect(postRequest.mock.calls.length).toBe(1)
+    expect(postRequest.mock.calls[0][0]).toMatchSnapshot()
   })
 
-  it('Cannot fetch webhook without the right context', async () => {
-    const response = await request(server).post('/graphql').send(webhook({}))
+  it('If there is no webhook no request made', async () => {
+    const callWebhook = getCallWebhook((context) => context)
 
-    expect(response.body.errors).toBeUndefined()
-    expect(response.body.data).toMatchSnapshot()
+    await callWebhook({
+      eventType: 'publish',
+      context: { userId: 100 },
+      data: {
+        key: 'value',
+      },
+    })
+
+    expect(postRequest.mock.calls.length).toBe(0)
   })
 })
