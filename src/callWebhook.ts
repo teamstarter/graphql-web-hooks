@@ -1,46 +1,42 @@
-import { Event } from './types'
-import ApolloClient from 'apollo-client'
-import gql from 'graphql-tag'
 import fetch from 'node-fetch'
 
+import { Event } from './types'
 import { Header } from './types'
+import getModels from './models'
 
-const acquireWebhook = gql`
-  mutation acquireWebhook($eventSecurityContext: JSON!, $eventType: String!) {
-    acquireWebhook(eventSecurityContext: $eventSecurityContext, eventType: $eventType) {
-      url
-      headers {
-        key
-        value
-      }
-    }
-  }
-`
-
-export default async function callWebhook({ eventType, eventSecurityContext, data }: Event,  client: ApolloClient<any>) {
-  const response = await client.mutate({
-    mutation: acquireWebhook,
-    variables: { eventType, eventSecurityContext },
-  })
-  
-  if (!response.errors) {
-    const url = response.data.acquireWebhook.url
-    const headers = response.data.acquireWebhook.headers.reduce((acc: any, header: Header) => {
-      acc[header.key] = header.value
-      return acc
-    }, {})
-    
-    try {
-      await fetch(url, {
-        method: 'post',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json',
-          ...headers
+export default function getCallWebhook(getMetadataFromContext: any) {
+  return async function callWebhook({ eventType, context, data }: Event) {
+    const models = getModels({})
+    const webhooks = await models.webhook.findAll({
+      where: {
+        securityMetadata: getMetadataFromContext(context),
+      },
+      includes: [
+        { model: models.header },
+        {
+          model: models.eventType,
+          required: true,
+          where: { type: [eventType, 'all'] },
         },
-      })
-  
-    } catch (e) {
-      throw new Error('Error during the request: ' + e)
+      ],
+    })
+
+    for (const webhook of webhooks) {
+      const url = webhook.url
+      const headers = webhook.headers.reduce((acc: any, header: Header) => {
+        acc[header.key] = header.value
+        return acc
+      }, {})
+
+      try {
+        await fetch(url, {
+          method: 'post',
+          body: JSON.stringify(data),
+          headers: { 'Content-Type': 'application/json', ...headers },
+        })
+      } catch (e) {
+        throw new Error('Error during the request: ' + e)
+      }
     }
   }
 }

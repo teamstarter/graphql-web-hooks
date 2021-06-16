@@ -8,17 +8,22 @@ const timestamp = (entry) =>
 module.exports = {
   up: function (queryInterface) {
     return queryInterface.bulkInsert(
-      'webhook',
+      'eventType',
       [
         {
           id: 1,
-          url: 'https://www.google.com',
-          securityMetadata: '{"userId":1}',
+          type: 'publish',
+          webhookId: 1,
         },
         {
           id: 2,
-          url: 'https://www.google.com',
-          securityMetadata: '{"userId":2}',
+          type: 'delete',
+          webhookId: 1,
+        },
+        {
+          id: 3,
+          type: 'delete',
+          webhookId: 2,
         },
       ].map(timestamp),
       {}
@@ -26,6 +31,6 @@ module.exports = {
   },
 
   down: function (queryInterface) {
-    return queryInterface.bulkDelete('webhook', null, {})
+    return queryInterface.bulkDelete('eventType', null, {})
   },
 }

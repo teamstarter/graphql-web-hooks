@@ -3,11 +3,10 @@ export type JSONObject = { [member: string]: JSONValue }
 export type JSONArray = JSONValue[]
 export type JSONValue = JSONPrimitive | JSONObject | JSONArray
 
-
 export type Event = {
   data: JSONValue
-  eventType: string  
-  eventSecurityContext: JSONValue
+  eventType: string
+  context: JSONValue
 }
 
 export type Webhook = {

@@ -2,7 +2,7 @@ module.exports = {
   development: {
     dialect: 'sqlite',
     storage: 'data/main.db',
-    logging: false, // console.log
+    logging: false,
   },
   production: {
     dialect: 'sqlite',

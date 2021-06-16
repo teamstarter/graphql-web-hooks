@@ -3,22 +3,31 @@ import {
   SequelizeModels,
   InAndOutTypes,
 } from 'graphql-sequelize-generator/types'
-
-import acquireWebhook from './webhook/acquire'
+import { Op } from 'sequelize'
 
 export default function WebhookConfiguration(
   graphqlTypes: InAndOutTypes,
   models: SequelizeModels,
-  isEventAllowed: any
+  getMetadataFromContext: Function
 ): ModelDeclarationType {
   return {
     model: models.webhook,
-    actions: ['update', 'create', 'delete'],
-    additionalMutations: {
-      acquireWebhook: acquireWebhook(graphqlTypes, models, isEventAllowed),
-    },
+    actions: ['list', 'update', 'create', 'delete'],
     list: {
-      before: (findOptions) => {
+      before: (findOptions, args, context) => {
+        if (findOptions.where) {
+          findOptions.where = {
+            [Op.and]: [
+              findOptions.where,
+              { securityMetadata: getMetadataFromContext(context) },
+            ],
+          }
+        } else {
+          findOptions.where = {
+            securityMetadata: getMetadataFromContext(context),
+          }
+        }
+
         return findOptions
       },
     },

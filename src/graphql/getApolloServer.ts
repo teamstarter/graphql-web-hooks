@@ -5,6 +5,7 @@ import {
 import getModels from '../models'
 import webhook from '../graphql/webhook'
 import header from '../graphql/header'
+import eventType from '../graphql/eventType'
 
 /**
  * @param dbConfig Sequelize database configuration object
@@ -14,15 +15,17 @@ export default async function getApolloServer(
   dbConfig: any,
   gsgParams: any = {},
   customMutations: any = {},
-  isEventAllowed: any,
+  getMetadataFromContext: any,
+  apolloServerOptions = {}
 ) {
   const models = getModels(dbConfig)
 
   const types = generateModelTypes(models)
 
   const graphqlSchemaDeclaration = {
-    webhook: webhook(types, models, isEventAllowed),
+    webhook: webhook(types, models, getMetadataFromContext),
     header: header(types, models),
+    eventType: eventType(types, models),
   }
 
   return generateApolloServer({
@@ -39,6 +42,7 @@ export default async function getApolloServer(
       //   ],
       // Be sure to enable tracing
       tracing: false,
+      ...apolloServerOptions,
     },
     customMutations,
     ...gsgParams,

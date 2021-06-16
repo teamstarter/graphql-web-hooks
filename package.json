@@ -13,7 +13,10 @@
     "graphql-sequelize-generator": "^7.3.5",
     "graphql-type-json": "^0.3.2",
     "node-fetch": "^2.6.1",
+    "prettier-tslint": "^0.4.2",
     "sequelize": "^6.6.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.3.0",
     "umzug": "^2.3.0"
   },
   "devDependencies": {

@@ -2,19 +2,18 @@ import { getApolloServer } from './../lib/index'
 import express from 'express'
 import http from 'spdy'
 
-
 export default async function getStandAloneServer(
   config: any,
   gsgParams: any = {},
   customMutations: any = {},
-  isEventAllowed: any
+  getMetadataFromContext: any
 ) {
   const app = express()
   const server = await getApolloServer(
     config,
     gsgParams,
     customMutations,
-    isEventAllowed
+    getMetadataFromContext
   )
 
   server.applyMiddleware({
