@@ -4,9 +4,74 @@ GWH provides the most flexible and simple tool that executes and manages webhook
 
 ## How to use
 
+### Getting started
+
+```js
+const { getCallWebhook } = require('graphql-web-hook')
+
+...
+
+function getMetadataFromContext(context) {
+  return { userId: context.userId }
+}
+
+const callWebhook = getCallWebhook(getMetadataFromContext)
+
+await callWebhook({
+  evenType: 'publish',
+  context: {
+    userId: 1,
+    ...
+  },
+  data: {
+    text: 'New post publish',
+  },
+})
+```
+
+### getCallWebhook
+
+The purpose of this function is to initialize callWebhook by assigning it the parameter getMetadataFormContext.
+
+**Params :**
+
+- getMetadataFromContext : function that should return the securityMetadata of a webhooks from a context.
+
+### callWebhook
+
+Function to call webhook.
+
+**How it works :** <br />
+
+- Retrieves webhooks according to the type of the event and its security metadata
+- Make a request to all webhook with the associated data
+
+**Params :**
+
+- **data** : data to be sent to the webhook
+- **eventType** : type of event
+- **context** : context related to the event
+
+### getMetadataFromContext
+
+The purpose of this function is to return the security parameters of a webhook from a context. (It's called when you make a webhook)
+
+**Params :**
+
+**Example :**
+
+```js
+getApolloServer({
+  ...
+  getMetadataFromContext: (context) => {
+    return getUserIdFromContext(context)
+  }
+}
+```
+
 ## Contributing
 
-## Install environnement
+### Install environnement
 
 yarn :
 
