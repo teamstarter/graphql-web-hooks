@@ -31,11 +31,11 @@ await callWebhook({
 
 ### getCallWebhook
 
-The purpose of this function is to initialize callWebhook by assigning it the parameter getMetadataFormContext.
+This function initializes and returns callWebhook by assigning it the getMetadataFormContext function.
 
 **Params :**
 
-- getMetadataFromContext : function that should return the securityMetadata of a webhooks from a context.
+- **getMetadataFromContext** : function that should return the securityMetadata of a webhooks from a context.
 
 ### callWebhook
 
@@ -54,13 +54,15 @@ Function to call webhook.
 
 ### getMetadataFromContext
 
-The purpose of this function is to return the security parameters of a webhook from a context. (It's called when you make a webhook)
-
-**Params :**
+The purpose of this function is to return the security parameters of a webhook from a context. (It's called when you fetch a webhook)
 
 **Example :**
 
 ```js
+const { getApolloServer } = require('graphql-web-hook')
+
+...
+
 getApolloServer({
   ...
   getMetadataFromContext: (context) => {
