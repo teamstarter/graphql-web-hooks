@@ -74,16 +74,4 @@ describe('Test acquireWebhook endpoint', () => {
     expect(response.body.errors).toBeUndefined()
     expect(response.body.data).toMatchSnapshot()
   })
-
-  it('Cannot fetch webhook without the right context', async () => {
-    const callWebhook = getCallWebhook((context) => context)
-
-    callWebhook({
-      eventType: 'publish',
-      context: { userId: 1 },
-      data: { data: 'data' },
-    })
-
-    expect(true).toBe(true)
-  })
 })
