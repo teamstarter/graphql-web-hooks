@@ -31,7 +31,7 @@ await callWebhook({
 
 ### getCallWebhook
 
-This function initializes and returns callWebhook by assigning it the getMetadataFormContext function.
+This function initializes and returns callWebhook by assigning it getMetadataFormContext function.
 
 **Params :**
 
@@ -43,7 +43,7 @@ Function to call webhook.
 
 **How it works :** <br />
 
-- Retrieves webhooks according to the type of the event and its security metadata
+- Retrieves webhooks according to the type of event and its security metadata
 - Make a request to all webhook with the associated data
 
 **Params :**
