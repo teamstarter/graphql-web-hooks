@@ -1,7 +1,13 @@
 import getApolloServer from './graphql/getApolloServer'
-import getModel from './models'
+import getModels from './models'
+import getCallWebhook from './callWebhook'
+import getNewClient from './getNewClient'
+import getStandAloneServer from './getStandAloneServer'
 
 export {
- getApolloServer,
- getModel
+  getApolloServer,
+  getModels,
+  getCallWebhook,
+  getNewClient,
+  getStandAloneServer,
 }

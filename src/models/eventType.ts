@@ -1,19 +1,15 @@
 import { DataTypes } from 'sequelize'
 
-export default function Header(sequelize: any) {
-  var Header = sequelize.define(
-    'header',
+export default function EventType(sequelize: any) {
+  var EventType = sequelize.define(
+    'eventType',
     {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      key: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      value: {
+      type: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -24,9 +20,9 @@ export default function Header(sequelize: any) {
     },
     {
       freezeTableName: true,
-      tableName: 'header',
+      tableName: 'eventType',
       paranoid: true,
     }
   )
-  return Header
+  return EventType
 }

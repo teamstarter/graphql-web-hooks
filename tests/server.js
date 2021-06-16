@@ -3,6 +3,7 @@ const express = require('express')
 const http = require('spdy')
 const { PubSub } = require('graphql-subscriptions')
 const config = require('./sqliteTestConfig.js')
+const { getMetadataFromContext } = require('./tools')
 const app = express()
 
 async function startServer() {
@@ -14,9 +15,16 @@ async function startServer() {
 
   const pubSubInstance = new PubSub()
 
-  const server = await getApolloServer(config, { pubSubInstance }, null, ({ eventSecurityContext, eventType, webhook }) => {
-    console.log({ eventSecurityContext, eventType, webhook })
-  })
+  const server = await getApolloServer(
+    config,
+    { pubSubInstance },
+    {},
+    getMetadataFromContext,
+    {
+      // THIS IS FOR TESTING PURPOSE, DO NOT DO THAT IN PRODUCTION
+      context: ({ req }) => ({ userId: req.headers.userId }),
+    }
+  )
 
   /**
    * This is the test server.

@@ -8,8 +8,16 @@ const {
   GraphQLList,
 } = require('graphql')
 
-const { getStandAloneServer, getModels } = require('./../lib/index')
+const express = require('express')
+const http = require('spdy')
 
+const {
+  getStandAloneServer,
+  getModels,
+  getApolloServer,
+} = require('./../lib/index')
+
+const { getMetadataFromContext } = require('./tools')
 var dbConfig = require(path.join(__dirname, '/sqliteTestConfig.js')).test
 
 const models = getModels(dbConfig)
@@ -104,39 +112,55 @@ async function closeConnections() {
   await models.sequelize.close()
 }
 
-exports.closeEverything = async (mainServer, models, done) => {
+exports.closeEverything = async (mainServer, models) => {
   await new Promise((resolve) => mainServer.close(() => resolve()))
   await closeConnections(models)
-  done()
 }
 
-exports.getNewServer = () => {
-  return getStandAloneServer(
+const middlewareContext = async (req, res, next) => {
+  next()
+}
+
+exports.getNewServer = async () => {
+  const app = express()
+  const server = await getApolloServer(
     dbConfig,
     {},
-    // You can add custom mutations if needed
-    {
-      customAcquire: {
-        type: new GraphQLObjectType({
-          name: 'customAcquire',
-          fields: {
-            id: { type: GraphQLInt },
-          },
-        }),
-        args: {
-          typeList: {
-            type: new GraphQLList(GraphQLString),
-          },
-        },
-        resolve: async (source, args, context) => {
-          // GNJ models can be retreived with the dbConfig if needed
-          // const models = getModels(dbConfig)
-          // get a job from the db
-          const job = await models.job.findByPk(1)
-
-          return job
-        },
-      },
-    }
+    {},
+    getMetadataFromContext,
+    { context: ({ req }) => req }
   )
+
+  app.use('/graphql', [
+    (req, res, next) => {
+      // req.userId = 100
+
+      next()
+    },
+  ])
+
+  server.applyMiddleware({
+    app,
+    path: '/graphql',
+  })
+
+  const port = process.env.PORT || 8080
+  return new Promise((resolve, reject) => {
+    const serverHttp = http
+      .createServer(
+        {
+          spdy: {
+            plain: true,
+          },
+        },
+        app
+      )
+      .listen(port, async () => {
+        console.log(
+          `🚀 http/https/h2 server runs on  http://localhost:${port}/graphql .`
+        )
+        resolve(serverHttp)
+      })
+    server.installSubscriptionHandlers(serverHttp)
+  })
 }

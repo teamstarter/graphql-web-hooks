@@ -13,11 +13,6 @@ export default function Webhook(sequelize: any) {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      eventTypesWhitelist: {
-        type: DataTypes.JSON,
-        allowNull: true,
-        defaultValue: null,
-      },
       securityMetadata: {
         type: DataTypes.JSON,
         allowNull: false,
@@ -29,5 +24,20 @@ export default function Webhook(sequelize: any) {
       paranoid: true,
     }
   )
+
+  Webhook.associate = function (models: any) {
+    models.webhook.hasMany(models.header, {
+      as: 'headers',
+      foreignKey: 'webhookId',
+      sourceKey: 'id',
+    })
+
+    models.webhook.hasMany(models.eventType, {
+      as: 'eventTypes',
+      foreignKey: 'webhookId',
+      sourceKey: 'id',
+    })
+  }
+
   return Webhook
 }
