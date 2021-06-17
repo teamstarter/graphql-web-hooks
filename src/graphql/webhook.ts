@@ -12,7 +12,7 @@ export default function WebhookConfiguration(
 ): ModelDeclarationType {
   return {
     model: models.webhook,
-    actions: ['list', 'update', 'create', 'delete'],
+    actions: ['list', 'update', 'create', 'delete', 'count'],
     list: {
       before: (findOptions, args, context) => {
         if (findOptions.where) {
