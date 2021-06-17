@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "./lib/index.js",
   "bin": {
-    "gnj": "./lib/gnj.js"
+    "gwh": "./lib/gwh.js"
   },
   "license": "MIT",
   "dependencies": {
