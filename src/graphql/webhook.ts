@@ -13,6 +13,7 @@ export default function WebhookConfiguration(
   return {
     model: models.webhook,
     actions: ['list', 'update', 'create', 'delete', 'count'],
+    subscriptions: ['create', 'update', 'delete'],
     list: {
       before: (findOptions, args, context) => {
         if (findOptions.where) {

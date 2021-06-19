@@ -11,5 +11,6 @@ export default function HeaderConfiguration(
   return {
     model: models.header,
     actions: ['create', 'delete', 'count'],
+    subscriptions: ['update', 'delete'],
   }
 }
