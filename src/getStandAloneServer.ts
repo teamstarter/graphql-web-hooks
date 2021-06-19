@@ -3,18 +3,20 @@ import express from 'express'
 import http from 'spdy'
 
 export default async function getStandAloneServer(
-  config: any,
+  dbConfig: any,
   gsgParams: any = {},
   customMutations: any = {},
-  getMetadataFromContext: any
+  getMetadataFromContext: any,
+  apolloServerOptions: any = {}
 ) {
   const app = express()
-  const server = await getApolloServer(
-    config,
+  const server = await getApolloServer({
+    dbConfig,
     gsgParams,
     customMutations,
-    getMetadataFromContext
-  )
+    getMetadataFromContext,
+    apolloServerOptions,
+  })
 
   server.applyMiddleware({
     app,

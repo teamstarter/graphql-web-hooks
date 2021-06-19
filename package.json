@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.4",
+    "@types/spdy": "^3.4.4",
     "graphql-relay": "^0.7.0",
     "graphql-sequelize": "^9.4.3",
     "jest": "^27.0.4",

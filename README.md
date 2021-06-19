@@ -4,7 +4,7 @@ GWH provides the most flexible and simple tool that executes and manages webhook
 
 ## How to use
 
-### Getting started
+classic use case
 
 ```js
 const { getCallWebhook } = require('graphql-web-hook')
@@ -12,8 +12,9 @@ const { getCallWebhook } = require('graphql-web-hook')
 ...
 
 function getMetadataFromContext(context) {
-  return { userId: context.userId }
+  return { userId: context.user.id }
 }
+...
 
 const callWebhook = getCallWebhook(getMetadataFromContext)
 
@@ -28,6 +29,44 @@ await callWebhook({
   },
 })
 ```
+
+## How setup
+
+Add GWH to your repository
+
+```
+yarn add graphql-web-hook
+```
+
+Migrate models
+
+```
+yarn run gnj migrate <configPath>
+```
+
+Add server apollo to your express server
+
+```js
+const { getApolloServer } = require('graphql-web-hook')
+
+const webhookServer = await getApolloServer({
+  dbConfig,
+  apolloServerOptions: { context: ({ req }) => req },
+  getMetadataFromContext: (context) => {
+    return getUserIdFromContext(context)
+  },
+)}
+
+webhookServer.applyMiddleware({
+  app,
+  path: '/webhook/graphql',
+})
+
+
+app.use('/webhook', [middleware])
+```
+
+## Documentation
 
 ### getCallWebhook
 
@@ -44,7 +83,7 @@ Function to call webhook.
 **How it works :** <br />
 
 - Retrieves webhooks according to the type of event and its security metadata
-- Make a request to all webhook with the associated data
+- Make request to all webhook with the associated data
 
 **Params :**
 

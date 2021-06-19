@@ -123,21 +123,16 @@ const middlewareContext = async (req, res, next) => {
 
 exports.getNewServer = async () => {
   const app = express()
-  const server = await getApolloServer(
+  console.log('start')
+  const server = await getApolloServer({
     dbConfig,
-    {},
-    {},
     getMetadataFromContext,
-    { context: ({ req }) => req }
-  )
-
-  app.use('/graphql', [
-    (req, res, next) => {
-      // req.userId = 100
-
-      next()
+    apolloServerOptions: {
+      context: ({ req }) => req,
     },
-  ])
+  })
+
+  console.log('end')
 
   server.applyMiddleware({
     app,

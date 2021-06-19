@@ -15,16 +15,15 @@ async function startServer() {
 
   const pubSubInstance = new PubSub()
 
-  const server = await getApolloServer(
-    config,
+  const server = await getApolloServer({
+    dbConfig,
     { pubSubInstance },
-    {},
     getMetadataFromContext,
-    {
+    apolloServerOptions : {
       // THIS IS FOR TESTING PURPOSE, DO NOT DO THAT IN PRODUCTION
       context: ({ req }) => ({ userId: req.headers.userId }),
     }
-  )
+  })
 
   /**
    * This is the test server.
