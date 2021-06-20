@@ -10,7 +10,7 @@ export default function HeaderConfiguration(
 ): ModelDeclarationType {
   return {
     model: models.header,
-    actions: ['create', 'delete', 'count'],
+    actions: ['create', 'update', 'delete', 'count'],
     subscriptions: ['update', 'delete'],
   }
 }
