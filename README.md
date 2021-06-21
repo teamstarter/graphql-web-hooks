@@ -1,6 +1,8 @@
 # Graphql-Web-Hook
 
-GWH provides the most flexible and simple tool that executes and manages webhooks.
+GWH provides a flexible and simple tool to executes and manages webhooks in a GraphQL environement.
+
+It is based on graphql-sequelize-generator and inspired by graphql-node-jobs.
 
 ## How to use
 
