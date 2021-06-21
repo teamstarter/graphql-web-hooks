@@ -25,3 +25,15 @@ Object {
   "webhook": Array [],
 }
 `;
+
+exports[`Test webhook endpoint Only create webhook with securityMetadata from context 1`] = `
+Object {
+  "webhookCreate": Object {
+    "headers": Array [],
+    "securityMetadata": Object {
+      "userId": 1,
+    },
+    "url": "oklm.com",
+  },
+}
+`;

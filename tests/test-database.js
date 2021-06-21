@@ -123,7 +123,6 @@ const middlewareContext = async (req, res, next) => {
 
 exports.getNewServer = async () => {
   const app = express()
-  console.log('start')
   const server = await getApolloServer({
     dbConfig,
     getMetadataFromContext,
@@ -131,8 +130,6 @@ exports.getNewServer = async () => {
       context: ({ req }) => req,
     },
   })
-
-  console.log('end')
 
   server.applyMiddleware({
     app,

@@ -38,7 +38,7 @@ export default async function getApolloServer(
 
   const graphqlSchemaDeclaration = {
     webhook: webhook(types, models, getMetadataFromContext),
-    header: header(types, models),
+    header: header(types, models, getMetadataFromContext),
     eventType: eventType(types, models),
   }
 

@@ -32,5 +32,11 @@ export default function WebhookConfiguration(
         return findOptions
       },
     },
+    create: {
+      before: (source, args, context) => {
+        args.webhook.securityMetadata = getMetadataFromContext(context)
+        return args.webhook
+      },
+    },
   }
 }
