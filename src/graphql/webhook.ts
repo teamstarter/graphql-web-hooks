@@ -35,7 +35,7 @@ export default function WebhookConfiguration(
     },
     create: {
       before: (source, args, context) => {
-        hook.create.before(source, args, context)
+        hook?.create?.before(source, args, context)
         args.webhook.securityMetadata = getMetadataFromContext(context)
         return args.webhook
       },
@@ -46,21 +46,21 @@ export default function WebhookConfiguration(
     },
     update: {
       before: async (source, args, context) => {
-        hook.update.before(source, args, context)
+        hook?.update?.before(source, args, context)
         return args.webhook
       },
       after: async (webhook, oldWebhook, source, args, context) => {
-        hook.update.after(webhook, oldWebhook, source, args, context)
+        hook?.update?.after(webhook, oldWebhook, source, args, context)
         return webhook
       },
     },
     delete: {
       before: async (where, source, args, context) => {
-        hook.delete.before(where, source, args, context)
+        hook?.delete?.before(where, source, args, context)
         return where
       },
       after: async (deletedWebhook, source, args, context) => {
-        hook.delete.after(deletedWebhook, source, args, context)
+        hook?.delete?.after(deletedWebhook, source, args, context)
         return deletedWebhook
       },
     },
