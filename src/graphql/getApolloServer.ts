@@ -18,21 +18,21 @@ export default async function getApolloServer(
     customMutations,
     getMetadataFromContext,
     apolloServerOptions,
-    hook,
+    hooks,
   }: {
     dbConfig: any
     gsgParams: any
     customMutations: any
     getMetadataFromContext: any
     apolloServerOptions: any
-    hook: any
+    hooks: any
   } = {
     dbConfig: {},
     gsgParams: {},
     customMutations: {},
     getMetadataFromContext: () => {},
     apolloServerOptions: {},
-    hook: {
+    hooks: {
       webhook: {
         create: { before: () => {}, after: () => {} },
         delete: { before: () => {}, after: () => {} },
@@ -46,7 +46,7 @@ export default async function getApolloServer(
   const types = generateModelTypes(models)
 
   const graphqlSchemaDeclaration = {
-    webhook: webhook(types, models, getMetadataFromContext, hook.webhook),
+    webhook: webhook(types, models, getMetadataFromContext, hooks.webhook),
     header: header(types, models, getMetadataFromContext),
     eventType: eventType(types, models),
   }
