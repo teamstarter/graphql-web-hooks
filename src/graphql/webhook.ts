@@ -35,32 +35,48 @@ export default function WebhookConfiguration(
     },
     create: {
       before: (source, args, context) => {
-        hook?.create?.before(source, args, context)
+        if (hook?.create?.before) {
+          hook.create.before(source, args, context)
+        }
+
         args.webhook.securityMetadata = getMetadataFromContext(context)
         return args.webhook
       },
       after: async (webhook, source, args, context) => {
-        hook.create.after(webhook, source, args, context)
+        if (hook?.create?.after) {
+          hook.create?.after(webhook, source, args, context)
+        }
+
         return webhook
       },
     },
     update: {
       before: async (source, args, context) => {
-        hook?.update?.before(source, args, context)
+        if (hook?.update?.before) {
+          hook.update.before(source, args, context)
+        }
         return args.webhook
       },
       after: async (webhook, oldWebhook, source, args, context) => {
-        hook?.update?.after(webhook, oldWebhook, source, args, context)
+        if (hook?.update?.after) {
+          hook.update.after(webhook, oldWebhook, source, args, context)
+        }
         return webhook
       },
     },
     delete: {
       before: async (where, source, args, context) => {
-        hook?.delete?.before(where, source, args, context)
+        if (hook?.delete?.before) {
+          hook.delete.before(where, source, args, context)
+        }
+
         return where
       },
       after: async (deletedWebhook, source, args, context) => {
-        hook?.delete?.after(deletedWebhook, source, args, context)
+        if (hook?.delete?.after) {
+          hook.delete.after(deletedWebhook, source, args, context)
+        }
+
         return deletedWebhook
       },
     },
