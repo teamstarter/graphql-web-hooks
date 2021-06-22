@@ -11,36 +11,31 @@ import eventType from '../graphql/eventType'
  * @param dbConfig Sequelize database configuration object
  * @param gsgParams Params from graphql-sequelize-generator that overwrite the default ones.
  */
-export default async function getApolloServer(
-  {
-    dbConfig,
-    gsgParams,
-    customMutations,
-    getMetadataFromContext,
-    apolloServerOptions,
-    hooks,
-  }: {
-    dbConfig: any
-    gsgParams: any
-    customMutations: any
-    getMetadataFromContext: any
-    apolloServerOptions: any
-    hooks: any
-  } = {
-    dbConfig: {},
-    gsgParams: {},
-    customMutations: {},
-    getMetadataFromContext: () => {},
-    apolloServerOptions: {},
-    hooks: {
+export default async function getApolloServer({
+  dbConfig,
+  gsgParams,
+  customMutations,
+  getMetadataFromContext,
+  apolloServerOptions,
+  hooks,
+}: {
+  dbConfig: any
+  gsgParams: any
+  customMutations: any
+  getMetadataFromContext: any
+  apolloServerOptions: any
+  hooks: any
+}) {
+  if (!hooks) {
+    hooks = {
       webhook: {
         create: { before: () => {}, after: () => {} },
         delete: { before: () => {}, after: () => {} },
         update: { before: () => {}, after: () => {} },
       },
-    },
+    }
   }
-) {
+
   const models = getModels(dbConfig)
 
   const types = generateModelTypes(models)
