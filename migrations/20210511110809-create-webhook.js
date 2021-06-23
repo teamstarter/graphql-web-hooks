@@ -12,10 +12,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      eventTypesWhitelist: {
-        type: Sequelize.JSON,
-        allowNull: true,
-      },
       securityMetadata: {
         type: Sequelize.JSON,
         allowNull: false,

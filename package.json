@@ -1,15 +1,27 @@
 {
   "name": "graphql-web-hook",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "version": "1.1.0",
+  "main": "./lib/index.js",
+  "bin": {
+    "gwh": "./lib/gwh.js"
+  },
+  "author": {
+    "email": "vincent.desmares@gmail.com",
+    "name": "Vincent Desmares",
+    "url": "https://twitter.com/VincentDesmares"
+  },
+  "files": [
+    "lib/**/*",
+    "migrations/*"
+  ],
+  "license": "Apache-2.0",
   "dependencies": {
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-error": "^1.1.13",
     "apollo-link-http": "^1.5.17",
     "commander": "^7.2.0",
-    "graphql": "^15.5.0",
+    "graphql": "^14.0.2",
     "graphql-sequelize-generator": "^7.3.5",
     "graphql-type-json": "^0.3.2",
     "node-fetch": "^2.6.1",
@@ -21,12 +33,14 @@
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.4",
+    "@types/spdy": "^3.4.4",
     "graphql-relay": "^0.7.0",
     "graphql-sequelize": "^9.4.3",
     "jest": "^27.0.4",
     "pm2": "^5.1.0",
     "spdy": "^4.0.2",
     "sqlite3": "^5.0.2",
+    "standard-version": "^9.3.0",
     "supertest": "^6.1.3",
     "typescript": "^4.0.3"
   },
@@ -40,6 +54,7 @@
     "build": "tsc --lib es2019,dom --esModuleInterop --outDir ./lib ./src/**/*.ts ./src/*.ts",
     "test": "PORT=3332 jest --runInBand --ci --forceExit --verbose",
     "start": "node ./tests/server.js",
-    "gwh": "node ./lib/gwh.js"
+    "gwh": "node ./lib/gwh.js",
+    "release": "standard-version"
   }
 }

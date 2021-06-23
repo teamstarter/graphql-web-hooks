@@ -1,3 +1,4 @@
+const path = require('path')
 const { getApolloServer } = require('./../lib/index')
 const express = require('express')
 const http = require('spdy')
@@ -5,6 +6,8 @@ const { PubSub } = require('graphql-subscriptions')
 const config = require('./sqliteTestConfig.js')
 const { getMetadataFromContext } = require('./tools')
 const app = express()
+
+var dbConfig = require(path.join(__dirname, '/sqliteTestConfig.js')).test
 
 async function startServer() {
   var options = {
@@ -15,16 +18,15 @@ async function startServer() {
 
   const pubSubInstance = new PubSub()
 
-  const server = await getApolloServer(
-    config,
-    { pubSubInstance },
-    {},
+  const server = await getApolloServer({
+    dbConfig,
+    pubSubInstance,
     getMetadataFromContext,
-    {
+    apolloServerOptions: {
       // THIS IS FOR TESTING PURPOSE, DO NOT DO THAT IN PRODUCTION
       context: ({ req }) => ({ userId: req.headers.userId }),
-    }
-  )
+    },
+  })
 
   /**
    * This is the test server.
