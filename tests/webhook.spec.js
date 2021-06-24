@@ -113,15 +113,26 @@ describe('Test webhook endpoint', () => {
   })
 
   it('When deleting a webhook the associated headers are deleted', async () => {
+    const webhookId = 1
+    const headers = await models.header.findAll({
+      where: { webhookId },
+    })
+    expect(headers).toMatchSnapshot()
+
     const response = await request(server)
       .post('/graphql')
       .set('userId', 1)
       .send(
         webhookDelete({
-          id: 1,
+          id: webhookId,
         })
       )
 
+    const headersDeleted = await models.header.findAll({
+      where: { webhookId },
+    })
+
+    expect(headersDeleted).toMatchSnapshot()
     expect(response.body.errors).toBeUndefined()
     expect(response.body.data).toMatchSnapshot()
   })

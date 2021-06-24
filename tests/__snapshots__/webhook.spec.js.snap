@@ -38,19 +38,32 @@ Object {
 }
 `;
 
-exports[`Test webhook endpoint Only create webhook with securityMetadata from context 1`] = `
-Object {
-  "webhookCreate": Object {
-    "headers": Array [],
-    "securityMetadata": Object {
-      "userId": 1,
-    },
-    "url": "oklm.com",
+exports[`Test webhook endpoint When deleting a webhook the associated headers are deleted 1`] = `
+Array [
+  Object {
+    "createdAt": 2007-07-11T22:04:22.000Z,
+    "deletedAt": null,
+    "id": 1,
+    "key": "header-key-1",
+    "updatedAt": 2007-07-11T22:04:22.000Z,
+    "value": "header-value-1",
+    "webhookId": 1,
   },
-}
+  Object {
+    "createdAt": 2007-07-11T22:04:22.000Z,
+    "deletedAt": null,
+    "id": 2,
+    "key": "header-key-2",
+    "updatedAt": 2007-07-11T22:04:22.000Z,
+    "value": "header-value-2",
+    "webhookId": 1,
+  },
+]
 `;
 
-exports[`Test webhook endpoint When deleting a webhook the associated headers are deleted 1`] = `
+exports[`Test webhook endpoint When deleting a webhook the associated headers are deleted 2`] = `Array []`;
+
+exports[`Test webhook endpoint When deleting a webhook the associated headers are deleted 3`] = `
 Object {
   "webhookDelete": 1,
 }
