@@ -41,20 +41,20 @@ Object {
 exports[`Test webhook endpoint When deleting a webhook the associated headers are deleted 1`] = `
 Array [
   Object {
-    "createdAt": 2007-07-11T22:04:22.000Z,
+    "createdAt": "redacted",
     "deletedAt": null,
     "id": 1,
     "key": "header-key-1",
-    "updatedAt": 2007-07-11T22:04:22.000Z,
+    "updatedAt": "redacted",
     "value": "header-value-1",
     "webhookId": 1,
   },
   Object {
-    "createdAt": 2007-07-11T22:04:22.000Z,
+    "createdAt": "redacted",
     "deletedAt": null,
     "id": 2,
     "key": "header-key-2",
-    "updatedAt": 2007-07-11T22:04:22.000Z,
+    "updatedAt": "redacted",
     "value": "header-value-2",
     "webhookId": 1,
   },

@@ -10,6 +10,7 @@ const {
   deleteTables,
   resetDatabase,
 } = require('./test-database.js')
+const { removeTimestamps } = require('./tools.js')
 const { getNewClient, callWebhook, getCallWebhook } = require('../lib/index')
 
 // This is the maximum amount of time the band of test can run before timing-out
@@ -116,8 +117,10 @@ describe('Test webhook endpoint', () => {
     const webhookId = 1
     const headers = await models.header.findAll({
       where: { webhookId },
+      order: [['id', 'ASC']],
     })
-    expect(headers).toMatchSnapshot()
+
+    expect(removeTimestamps(headers)).toMatchSnapshot()
 
     const response = await request(server)
       .post('/graphql')
@@ -130,6 +133,7 @@ describe('Test webhook endpoint', () => {
 
     const headersDeleted = await models.header.findAll({
       where: { webhookId },
+      order: [['id', 'DESC']],
     })
 
     expect(headersDeleted).toMatchSnapshot()
