@@ -26,6 +26,18 @@ Object {
 }
 `;
 
+exports[`Test webhook endpoint Only create webhook with associated securityMetadata 1`] = `
+Object {
+  "webhookCreate": Object {
+    "headers": Array [],
+    "securityMetadata": Object {
+      "userId": 1,
+    },
+    "url": "oklm.com",
+  },
+}
+`;
+
 exports[`Test webhook endpoint Only create webhook with securityMetadata from context 1`] = `
 Object {
   "webhookCreate": Object {
@@ -35,5 +47,11 @@ Object {
     },
     "url": "oklm.com",
   },
+}
+`;
+
+exports[`Test webhook endpoint When deleting a webhook the associated headers are deleted 1`] = `
+Object {
+  "webhookDelete": 1,
 }
 `;

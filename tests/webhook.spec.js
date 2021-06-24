@@ -51,6 +51,14 @@ const webhookCreate = (variables) => ({
   operationName: null,
 })
 
+const webhookDelete = (variables) => ({
+  query: `mutation webhookDelete($id: Int!) {
+    webhookDelete(id: $id)
+  }`,
+  variables,
+  operationName: null,
+})
+
 /**
  * Starting the tests
  */
@@ -97,6 +105,20 @@ describe('Test webhook endpoint', () => {
       .send(
         webhookCreate({
           webhook: { url: 'oklm.com' },
+        })
+      )
+
+    expect(response.body.errors).toBeUndefined()
+    expect(response.body.data).toMatchSnapshot()
+  })
+
+  it('When deleting a webhook the associated headers are deleted', async () => {
+    const response = await request(server)
+      .post('/graphql')
+      .set('userId', 1)
+      .send(
+        webhookDelete({
+          id: 1,
         })
       )
 
