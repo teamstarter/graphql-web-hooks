@@ -78,7 +78,7 @@ export default function WebhookConfiguration(
         }
 
         await models.header.destroy({
-          where: { id: deletedWebhook.id },
+          where: { webhookId: deletedWebhook.id },
         })
       },
     },
