@@ -87,6 +87,6 @@ describe('Test header endpoint', () => {
         })
       )
 
-    expect(response.body.errors).toMatchSnapshot()
+    expect(response.body.errors[0].message).toMatchSnapshot()
   })
 })

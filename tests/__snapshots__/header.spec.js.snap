@@ -9,31 +9,4 @@ Object {
 }
 `;
 
-exports[`Test header endpoint Cannot create header without right securityMetadata 1`] = `
-Array [
-  Object {
-    "extensions": Object {
-      "code": "INTERNAL_SERVER_ERROR",
-      "exception": Object {
-        "stacktrace": Array [
-          "Error: Wrong securityMetadata",
-          "    at Object.call (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/header.js:64:35)",
-          "    at step (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/header.js:33:23)",
-          "    at Object.next (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/header.js:14:53)",
-          "    at fulfilled (/Users/victorgermain/Documents/work/graphql-web-hook/lib/graphql/header.js:5:58)",
-        ],
-      },
-    },
-    "locations": Array [
-      Object {
-        "column": 5,
-        "line": 2,
-      },
-    ],
-    "message": "Wrong securityMetadata",
-    "path": Array [
-      "headerCreate",
-    ],
-  },
-]
-`;
+exports[`Test header endpoint Cannot create header without right securityMetadata 1`] = `"Wrong securityMetadata"`;
