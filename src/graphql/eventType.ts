@@ -18,7 +18,7 @@ export default function WebhookConfiguration(
     },
     create: {
       before: (source, args, context) => {
-        return { ...args, type: 'all' }
+        return args.eventType
       },
     },
   }
