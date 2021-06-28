@@ -80,6 +80,10 @@ export default function WebhookConfiguration(
         await models.header.destroy({
           where: { webhookId: deletedWebhook.id },
         })
+
+        await models.eventType.destroy({
+          where: { webhookId: deletedWebhook.id },
+        })
       },
     },
   }
