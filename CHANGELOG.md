@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/teamstarter/graphql-web-hooks/compare/v1.2.1...v1.3.0) (2021-06-29)
+
+
+### Features
+
+* **eventType:** delete eventype after webhook ([6e6eaf3](https://github.com/teamstarter/graphql-web-hooks/commit/6e6eaf3fb1d6512bedcaec376b19009b34ac6a25))
+* **eventType:** update create ([14faeef](https://github.com/teamstarter/graphql-web-hooks/commit/14faeefef5c3c105aad7bbf01ec99294c6612ad7))
+
 ### [1.2.1](https://github.com/teamstarter/graphql-web-hooks/compare/v1.2.0...v1.2.1) (2021-06-24)
 
 ## [1.2.0](https://github.com/teamstarter/graphql-web-hooks/compare/v1.1.0...v1.2.0) (2021-06-23)
