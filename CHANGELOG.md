@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/teamstarter/graphql-web-hooks/compare/v1.3.0...v1.4.0) (2021-10-19)
+
+
+### Features
+
+* **deps:** Move graphql-sequelize-generator to the peer deps. ([c42edf3](https://github.com/teamstarter/graphql-web-hooks/commit/c42edf3e5e5886a5a430e1fb8b051adbef224deb))
+
 ## [1.3.0](https://github.com/teamstarter/graphql-web-hooks/compare/v1.2.1...v1.3.0) (2021-06-29)
 
 
