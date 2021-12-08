@@ -29,6 +29,7 @@ export default async function getApolloServer({
   if (!hooks) {
     hooks = {
       webhook: {
+        list: { before: () => {}, after: () => {} },
         create: { before: () => {}, after: () => {} },
         delete: { before: () => {}, after: () => {} },
         update: { before: () => {}, after: () => {} },
