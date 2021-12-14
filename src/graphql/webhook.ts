@@ -30,7 +30,17 @@ export default function WebhookConfiguration(
           }
         }
 
+        if (hook?.list?.before) {
+          hook.list.before(findOptions, args, context)
+        }
+
         return findOptions
+      },
+      after: (result, args, context, info) => {
+        if (hook?.list?.after) {
+          hook.list.after(result, args, context, info)
+        }
+        return result
       },
     },
     create: {
