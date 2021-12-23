@@ -11,13 +11,6 @@ classic use case
 ```js
 const { getCallWebhook } = require('graphql-web-hook')
 
-...
-
-function getMetadataFromContext(context) {
-  return { userId: context.user.id }
-}
-...
-
 const callWebhook = getCallWebhook(getMetadataFromContext)
 
 await callWebhook({
