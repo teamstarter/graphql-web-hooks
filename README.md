@@ -5,9 +5,6 @@ GWH provides a flexible and simple tool to executes and manages webhooks in a Gr
 It is based on graphql-sequelize-generator and inspired by graphql-node-jobs.
 
 ## How to use
-
-classic use case
-
 ```js
 const { getCallWebhook } = require('graphql-web-hook')
 
