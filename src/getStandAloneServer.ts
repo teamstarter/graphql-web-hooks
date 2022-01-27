@@ -8,7 +8,7 @@ export default async function getStandAloneServer(
   apolloServerOptions: any = {}
 ) {
   const express = require('express')
-  const http2 = require('http2')
+  const http2 = require('http')
   const app = express()
   const server = await getApolloServer({
     dbConfig,
