@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { Sequelize } from 'sequelize'
+import { Sequelize, DataTypes } from 'sequelize'
 
 let db: any = null
 
@@ -16,20 +16,20 @@ function initDb(config: any) {
   const basename = path.basename(module.filename)
   db = {}
 
-  let sequelize: any = null
+  let sequelizeInstance: any = null
 
   if (
     typeof config.use_env_variable !== 'undefined' &&
     config.use_env_variable
   ) {
-    sequelize = new Sequelize()
+    sequelizeInstance = new Sequelize()
   } else {
     const connexion =
       process.env.NODE_ENV &&
       typeof config[process.env.NODE_ENV] !== 'undefined'
         ? config[process.env.NODE_ENV]
         : config
-    sequelize = new Sequelize(connexion)
+    sequelizeInstance = new Sequelize(connexion)
   }
 
   fs.readdirSync(__dirname)
@@ -40,8 +40,8 @@ function initDb(config: any) {
     })
     .forEach(function (file) {
       const model = require(path.join(__dirname, file)).default(
-        sequelize,
-        sequelize.DataTypes
+        sequelizeInstance,
+        DataTypes
       )
       db[model.name] = model
     })
@@ -52,7 +52,7 @@ function initDb(config: any) {
     }
   })
 
-  db.sequelize = sequelize
+  db.sequelize = sequelizeInstance
   db.Sequelize = Sequelize
 }
 

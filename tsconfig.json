@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -11,21 +11,10 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
     "isolatedModules": true,
-    "types": [],
-    "noFallthroughCasesInSwitch": true
+    "noEmit": true,
+    "jsx": "react",
+    "typeRoots": ["./src/types", "./node_modules/@types"]
   },
-  "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "./node_modules",
-    "./node_modules/*",
-    "./node_modules/@types/node/index.d.ts",
-    "node_modules/graphql-sequelize-generator",
-    "public",
-    "typings/browser",
-    "typings/browser.d.ts"
-  ]
+  "include": ["src"]
 }

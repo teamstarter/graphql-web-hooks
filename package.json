@@ -47,7 +47,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.3.0",
     "typescript": "^4.8.4",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "graphql-sequelize": "^9.4.0"
   },
   "peerDependencies": {
     "@apollo/client": "^3.7.3",
@@ -55,6 +56,7 @@
     "graphql": "^16.6.0",
     "graphql-relay": "^0.10.0",
     "graphql-sequelize-generator": "teamstarter/graphql-sequelize-generator#upgrade-apollo-10-2022",
+    "graphql-sequelize": "^9.4.0",
     "sequelize": "^6.3.5"
   },
   "scripts": {
