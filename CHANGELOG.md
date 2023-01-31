@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/teamstarter/graphql-web-hooks/compare/v1.4.1...v2.0.0) (2023-01-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tech-dept:** Upgrade to Apollo 4 and add hint in documentation.
+
+### Features
+
+* **tech-dept:** Upgrade to Apollo 4 and add hint in documentation. ([e0709c7](https://github.com/teamstarter/graphql-web-hooks/commit/e0709c7cb2b361479f508f8f49760a3c26c8ce9f))
+
 ### [1.4.1](https://github.com/teamstarter/graphql-web-hooks/compare/v1.4.0...v1.4.1) (2021-12-14)
 
 ## [1.4.0](https://github.com/teamstarter/graphql-web-hooks/compare/v1.3.0...v1.4.0) (2021-10-19)
