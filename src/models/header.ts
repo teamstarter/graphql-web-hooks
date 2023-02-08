@@ -1,6 +1,4 @@
-import { DataTypes } from 'sequelize'
-
-export default function Header(sequelize: any) {
+export default function Header(sequelize: any, DataTypes: any) {
   var Header = sequelize.define(
     'header',
     {
