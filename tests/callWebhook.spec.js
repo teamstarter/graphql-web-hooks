@@ -58,6 +58,7 @@ describe('Test callWebhook function', () => {
       context: { userId: 1 },
       data: {
         key: 'value',
+        eventType: 'delete',
       },
     })
 
@@ -73,10 +74,12 @@ describe('Test callWebhook function', () => {
       context: { userId: 100 },
       data: {
         key: 'value',
+        eventType: 'publish',
       },
     })
 
     expect(postRequest.mock.calls.length).toBe(0)
+    expect(postRequest.mock.calls).toMatchSnapshot()
   })
 
   it('there is just one webhook called for one user', async () => {
@@ -87,10 +90,12 @@ describe('Test callWebhook function', () => {
       context: { userId: 1 },
       data: {
         key: 'value',
+        eventType: 'delete',
       },
     })
 
     expect(postRequest.mock.calls.length).toBe(1)
+    expect(postRequest.mock.calls).toMatchSnapshot()
   })
 
   it('there is 2 webhooks called for one user ', async () => {
@@ -101,9 +106,10 @@ describe('Test callWebhook function', () => {
       context: { userId: 1 },
       data: {
         key: 'value',
+        eventType: 'publish',
       },
     })
-
     expect(postRequest.mock.calls.length).toBe(2)
+    expect(postRequest.mock.calls).toMatchSnapshot()
   })
 })
