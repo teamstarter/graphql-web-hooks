@@ -20,6 +20,11 @@ module.exports = {
           url: 'https://www.google.com',
           securityMetadata: '{"userId":2}',
         },
+        {
+          id: 3,
+          url: 'https://www.google.com',
+          securityMetadata: '{"userId":1}',
+        },
       ].map(timestamp),
       {}
     )

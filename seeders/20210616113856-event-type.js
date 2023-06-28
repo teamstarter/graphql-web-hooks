@@ -25,6 +25,16 @@ module.exports = {
           type: 'delete',
           webhookId: 2,
         },
+        {
+          id: 4,
+          type: 'cancel',
+          webhookId: 3,
+        },
+        {
+          id: 5,
+          type: 'publish',
+          webhookId: 3,
+        },
       ].map(timestamp),
       {}
     )
