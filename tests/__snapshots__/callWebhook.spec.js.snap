@@ -3,6 +3,7 @@
 exports[`Test callWebhook function Can call a webhook 1`] = `
 Object {
   "data": Object {
+    "eventType": "delete",
     "key": "value",
   },
   "headers": Object {
@@ -11,4 +12,52 @@ Object {
   },
   "url": "https://www.google.com",
 }
+`;
+
+exports[`Test callWebhook function If there is no webhook no request made 1`] = `Array []`;
+
+exports[`Test callWebhook function there is 2 webhooks called for one user  1`] = `
+Array [
+  Array [
+    Object {
+      "data": Object {
+        "eventType": "publish",
+        "key": "value",
+      },
+      "headers": Object {
+        "header-key-1": "header-value-1",
+        "header-key-2": "header-value-2",
+      },
+      "url": "https://www.google.com",
+    },
+  ],
+  Array [
+    Object {
+      "data": Object {
+        "eventType": "publish",
+        "key": "value",
+      },
+      "headers": Object {},
+      "url": "https://www.google.com",
+    },
+  ],
+]
+`;
+
+exports[`Test callWebhook function there is just one webhook called for one user 1`] = `
+Array [
+  Array [
+    Object {
+      "data": Object {
+        "eventType": "delete",
+        "key": "value",
+      },
+      "headers": Object {
+        "header-key-1": "header-value-1",
+        "header-key-2": "header-value-2",
+      },
+      "url": "https://www.google.com",
+    },
+  ],
+]
 `;

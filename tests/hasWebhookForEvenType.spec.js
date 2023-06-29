@@ -10,9 +10,7 @@ const {
   deleteTables,
   resetDatabase,
 } = require('./test-database.js')
-const { getNewClient, callWebhook, getCallWebhook } = require('../lib/index')
-
-const { postRequest } = require('../lib/tools')
+const { getNewClient, hasWebhookForEvenType } = require('../lib/index')
 
 // This is the maximum amount of time the band of test can run before timing-out
 jest.setTimeout(600000)
@@ -30,7 +28,7 @@ jest.mock('../lib/tools.js', () => ({
 /**
  * Starting the tests
  */
-describe('Test callWebhook function', () => {
+describe('Test hasWebhookForEvenType function', () => {
   beforeAll(async () => {
     await migrateDatabase()
     await seedDatabase()
@@ -51,65 +49,58 @@ describe('Test callWebhook function', () => {
   })
 
   it('Can call a webhook', async () => {
-    const callWebhook = getCallWebhook((context) => context)
+    const webhookForEvenType = hasWebhookForEvenType((context) => context)
 
-    await callWebhook({
+    const result = await webhookForEvenType({
       eventType: 'delete',
       context: { userId: 1 },
       data: {
         key: 'value',
-        eventType: 'delete',
       },
     })
 
-    expect(postRequest.mock.calls.length).toBe(1)
-    expect(postRequest.mock.calls[0][0]).toMatchSnapshot()
+    expect(result).toBe(true)
   })
 
   it('If there is no webhook no request made', async () => {
-    const callWebhook = getCallWebhook((context) => context)
+    const webhookForEvenType = hasWebhookForEvenType((context) => context)
 
-    await callWebhook({
+    const result = await webhookForEvenType({
       eventType: 'publish',
       context: { userId: 100 },
       data: {
         key: 'value',
-        eventType: 'publish',
       },
     })
 
-    expect(postRequest.mock.calls.length).toBe(0)
-    expect(postRequest.mock.calls).toMatchSnapshot()
+    expect(result).toBe(false)
   })
 
   it('there is just one webhook called for one user', async () => {
-    const callWebhook = getCallWebhook((context) => context)
+    const webhookForEvenType = hasWebhookForEvenType((context) => context)
 
-    await callWebhook({
+    const result = await webhookForEvenType({
       eventType: 'delete',
       context: { userId: 1 },
       data: {
         key: 'value',
-        eventType: 'delete',
       },
     })
 
-    expect(postRequest.mock.calls.length).toBe(1)
-    expect(postRequest.mock.calls).toMatchSnapshot()
+    expect(result).toBe(true)
   })
 
   it('there is 2 webhooks called for one user ', async () => {
-    const callWebhook = getCallWebhook((context) => context)
+    const webhookForEvenType = hasWebhookForEvenType((context) => context)
 
-    await callWebhook({
+    const result = await webhookForEvenType({
       eventType: 'publish',
       context: { userId: 1 },
       data: {
         key: 'value',
-        eventType: 'publish',
       },
     })
-    expect(postRequest.mock.calls.length).toBe(2)
-    expect(postRequest.mock.calls).toMatchSnapshot()
+
+    expect(result).toBe(true)
   })
 })
