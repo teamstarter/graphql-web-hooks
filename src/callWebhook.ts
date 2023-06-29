@@ -10,10 +10,11 @@ export default function getCallWebhook(getMetadataFromContext: any) {
       where: {
         securityMetadata: getMetadataFromContext(context),
       },
-      includes: [
+      include: [
         { model: models.header, as: 'headers' },
         {
           model: models.eventType,
+          as: 'eventTypes',
           required: true,
           where: { type: [eventType, 'all'] },
         },

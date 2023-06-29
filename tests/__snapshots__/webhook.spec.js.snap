@@ -16,6 +16,10 @@ Object {
       ],
       "url": "https://www.google.com",
     },
+    Object {
+      "headers": Array [],
+      "url": "https://www.google.com",
+    },
   ],
 }
 `;
