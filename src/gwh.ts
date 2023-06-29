@@ -13,7 +13,7 @@ program
     let config = null
     try {
       config = require(configPath)
-    } catch (e) {
+    } catch (e: any) {
       throw new Error('Could not load the given config.' + e.message)
     }
     const models = getModels(config)

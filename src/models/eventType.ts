@@ -1,6 +1,4 @@
-import { DataTypes } from 'sequelize'
-
-export default function EventType(sequelize: any) {
+export default function EventType(sequelize: any, DataTypes: any) {
   var EventType = sequelize.define(
     'eventType',
     {

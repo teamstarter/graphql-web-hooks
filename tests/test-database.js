@@ -10,6 +10,11 @@ const {
 
 const express = require('express')
 const http = require('spdy')
+const { PubSub } = require('graphql-subscriptions')
+const { WebSocketServer } = require('ws')
+const { expressMiddleware } = require('@apollo/server/express4')
+const cors = require('cors')
+const { json } = require('body-parser')
 
 const {
   getStandAloneServer,
@@ -123,36 +128,49 @@ const middlewareContext = async (req, res, next) => {
 
 exports.getNewServer = async () => {
   const app = express()
+  const httpServer = http.createServer(
+    {
+      spdy: {
+        plain: true,
+      },
+    },
+    app
+  )
+
+  const wsServer = new WebSocketServer({
+    // This is the `httpServer` we created in a previous step.
+    server: httpServer,
+    // Pass a different path here if app.use
+    // serves expressMiddleware at a different path
+    path: '/graphql',
+  })
+  const pubSubInstance = new PubSub()
+
   const server = await getApolloServer({
     dbConfig,
     getMetadataFromContext,
-    apolloServerOptions: {
-      context: ({ req }) => req,
-    },
+    pubSubInstance,
+    wsServer,
+    apolloServerOptions: {},
   })
 
-  server.applyMiddleware({
-    app,
-    path: '/graphql',
-  })
+  await server.start()
+
+  app.use(
+    '/graphql',
+    cors(),
+    json(),
+    expressMiddleware(server, {
+      context: ({ req }) => req,
+    })
+  )
 
   const port = process.env.PORT || 8080
-  return new Promise((resolve, reject) => {
-    const serverHttp = http
-      .createServer(
-        {
-          spdy: {
-            plain: true,
-          },
-        },
-        app
-      )
-      .listen(port, async () => {
-        console.log(
-          `🚀 http/https/h2 server runs on  http://localhost:${port}/graphql .`
-        )
-        resolve(serverHttp)
-      })
-    server.installSubscriptionHandlers(serverHttp)
+
+  httpServer.listen(port, async () => {
+    console.log(
+      `🚀 http/https/h2 server runs on  http://localhost:${port}/graphql .`
+    )
   })
+  return httpServer
 }

@@ -1,6 +1,4 @@
-import { DataTypes } from 'sequelize'
-
-export default function Webhook(sequelize: any) {
+export default function Webhook(sequelize: any, DataTypes: any) {
   var Webhook = sequelize.define(
     'webhook',
     {
