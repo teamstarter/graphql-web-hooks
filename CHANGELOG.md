@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/teamstarter/graphql-web-hooks/compare/v2.0.1...v2.1.0) (2023-10-12)
+
+
+### Features
+
+* **SequelizeGeneratorPackage:** package updated ([#12](https://github.com/teamstarter/graphql-web-hooks/issues/12)) ([e5b67c3](https://github.com/teamstarter/graphql-web-hooks/commit/e5b67c33b535dff544af3afc317b0d01e92666dd))
+
 ### [2.0.1](https://github.com/teamstarter/graphql-web-hooks/compare/v2.0.0...v2.0.1) (2023-06-29)
 
 ## [2.0.0](https://github.com/teamstarter/graphql-web-hooks/compare/v1.4.1...v2.0.0) (2023-01-31)
