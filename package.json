@@ -34,7 +34,7 @@
     "@types/spdy": "^3.4.4",
     "express": "^4.18.2",
     "graphql-relay": "^0.10.0",
-    "graphql-sequelize-generator": "teamstarter/graphql-sequelize-generator#upgrade-apollo-10-2022",
+    "@teamstarter/graphql-sequelize-generator": "8.3.0",
     "jest": "^27.0.4",
     "pm2": "^5.1.0",
     "prettier": "^2.7.1",
@@ -55,7 +55,7 @@
     "@apollo/server": "^4.1.1",
     "graphql": "^16.6.0",
     "graphql-relay": "^0.10.0",
-    "graphql-sequelize-generator": "teamstarter/graphql-sequelize-generator#upgrade-apollo-10-2022",
+    "@teamstarter/graphql-sequelize-generator": "8.3.0",
     "graphql-sequelize": "^9.4.0",
     "sequelize": "^6.3.5"
   },

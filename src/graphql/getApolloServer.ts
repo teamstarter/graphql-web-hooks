@@ -1,7 +1,7 @@
 import {
   generateApolloServer,
   generateModelTypes,
-} from 'graphql-sequelize-generator'
+} from '@teamstarter/graphql-sequelize-generator'
 import getModels from '../models'
 import webhook from '../graphql/webhook'
 import header from '../graphql/header'
