@@ -13,7 +13,7 @@ import getModels from '../models'
  */
 export default async function getApolloServer({
   dbConfig,
-  sequelizeConnection,
+  sequelizeInstance,
   gsgParams,
   customMutations,
   getMetadataFromContext,
@@ -21,7 +21,7 @@ export default async function getApolloServer({
   hooks,
 }: {
   dbConfig: any
-  sequelizeConnection: any
+  sequelizeInstance: any
   gsgParams: any
   customMutations: any
   getMetadataFromContext: any
@@ -39,7 +39,7 @@ export default async function getApolloServer({
     }
   }
 
-  const models = getModels({dbConfig, sequelizeConnection})
+  const models = getModels({dbConfig, sequelizeInstance})
 
   const types = generateModelTypes(models)
 
