@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.1](https://github.com/teamstarter/graphql-web-hooks/compare/v3.1.0...v3.1.1) (2024-06-02)
+
+
+### Bug Fixes
+
+* **db:** Fix instance option. ([0f5a3ac](https://github.com/teamstarter/graphql-web-hooks/commit/0f5a3ac87dfd60bb732bd68d5931f981308374a0))
+
 ## [3.1.0](https://github.com/teamstarter/graphql-web-hooks/compare/v3.0.1...v3.1.0) (2024-06-02)
 
 
