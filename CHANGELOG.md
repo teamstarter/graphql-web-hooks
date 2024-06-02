@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/teamstarter/graphql-web-hooks/compare/v3.0.1...v3.1.0) (2024-06-02)
+
+
+### Features
+
+* **doc:** Avoid missing builds by adding the step to the test one. ([0ed9277](https://github.com/teamstarter/graphql-web-hooks/commit/0ed9277fe3abb8a1d8003a90bb623cb9d97c24a5))
+
+
+### Bug Fixes
+
+* **db:** Fix crash for real this time :) ([07519b0](https://github.com/teamstarter/graphql-web-hooks/commit/07519b0c57516dde0525b93db604703a32af9afd))
+
 ### [3.0.1](https://github.com/teamstarter/graphql-web-hooks/compare/v3.0.0...v3.0.1) (2024-06-02)
 
 
