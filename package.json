@@ -61,7 +61,7 @@
   },
   "scripts": {
     "build": "tsc --lib es2019,dom --esModuleInterop --outDir ./lib ./src/**/*.ts ./src/*.ts",
-    "test": "PORT=3332 jest --runInBand --ci --forceExit --verbose",
+    "test": "yarn build && PORT=3332 jest --runInBand --ci --forceExit --verbose",
     "start": "node ./tests/server.js",
     "gwh": "node ./lib/gwh.js",
     "release": "standard-version"
