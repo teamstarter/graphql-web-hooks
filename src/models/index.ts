@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { Sequelize, DataTypes } from 'sequelize'
+import { DataTypes, Sequelize } from 'sequelize'
 
 let db: any = null
 
@@ -12,23 +12,22 @@ let db: any = null
  * It must be noted that NJ does not support changing the models configuration
  * once the models are fetched.
  */
-function initDb(config: any) {
+function initDb({dbConfig, sequelizeInstance}: any) {
   const basename = path.basename(module.filename)
   db = {}
 
-  let sequelizeInstance: any = null
-
   if (
-    typeof config.use_env_variable !== 'undefined' &&
-    config.use_env_variable
+    typeof dbConfig.use_env_variable !== 'undefined' &&
+    dbConfig.use_env_variable && 
+    !sequelizeInstance
   ) {
     sequelizeInstance = new Sequelize()
-  } else {
+  } else if(!sequelizeInstance) {
     const connexion =
       process.env.NODE_ENV &&
-      typeof config[process.env.NODE_ENV] !== 'undefined'
-        ? config[process.env.NODE_ENV]
-        : config
+      typeof dbConfig[process.env.NODE_ENV] !== 'undefined'
+        ? dbConfig[process.env.NODE_ENV]
+        : dbConfig
     sequelizeInstance = new Sequelize(connexion)
   }
 
@@ -56,9 +55,9 @@ function initDb(config: any) {
   db.Sequelize = Sequelize
 }
 
-export default function getModels(dbConfig: any) {
+export default function getModels({dbConfig, sequelizeConnection} : any) {
   if (!db) {
-    initDb(dbConfig)
+    initDb({dbConfig, sequelizeConnection})
   }
   return db
 }

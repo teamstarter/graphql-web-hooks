@@ -1,14 +1,14 @@
-import {
+import type {
+  InAndOutTypes,
   ModelDeclarationType,
   SequelizeModels,
-  InAndOutTypes,
-} from '@teamstarter/graphql-sequelize-generator/types'
+} from '@teamstarter/graphql-sequelize-generator/src/types/types'
 
 export default function HeaderConfiguration(
   graphqlTypes: InAndOutTypes,
   models: SequelizeModels,
   getMetadataFromContext: Function
-): ModelDeclarationType {
+): ModelDeclarationType<any> {
   return {
     model: models.header,
     actions: ['create', 'update', 'delete', 'count'],

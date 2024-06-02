@@ -1,11 +1,10 @@
-import { Event } from './types'
-import { Header } from './types'
 import getModels from './models'
 import { postRequest } from './tools'
+import { Event, Header } from './types'
 
 export default function getCallWebhook(getMetadataFromContext: any) {
   return async function callWebhook({ eventType, context, data }: Event) {
-    const models = getModels({})
+    const models = getModels({dbConfig: {}})
     const webhooks = await models.webhook.findAll({
       where: {
         securityMetadata: getMetadataFromContext(context),

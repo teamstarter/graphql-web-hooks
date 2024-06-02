@@ -25,7 +25,7 @@ const {
 const { getMetadataFromContext } = require('./tools')
 var dbConfig = require(path.join(__dirname, '/sqliteTestConfig.js')).test
 
-const models = getModels(dbConfig)
+const models = getModels({dbConfig})
 const sequelize = models.sequelize // sequelize is the instance of the db
 
 /**

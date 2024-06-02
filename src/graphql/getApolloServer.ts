@@ -2,10 +2,10 @@ import {
   generateApolloServer,
   generateModelTypes,
 } from '@teamstarter/graphql-sequelize-generator'
-import getModels from '../models'
-import webhook from '../graphql/webhook'
-import header from '../graphql/header'
 import eventType from '../graphql/eventType'
+import header from '../graphql/header'
+import webhook from '../graphql/webhook'
+import getModels from '../models'
 
 /**
  * @param dbConfig Sequelize database configuration object
@@ -13,6 +13,7 @@ import eventType from '../graphql/eventType'
  */
 export default async function getApolloServer({
   dbConfig,
+  sequelizeConnection,
   gsgParams,
   customMutations,
   getMetadataFromContext,
@@ -20,6 +21,7 @@ export default async function getApolloServer({
   hooks,
 }: {
   dbConfig: any
+  sequelizeConnection: any
   gsgParams: any
   customMutations: any
   getMetadataFromContext: any
@@ -37,7 +39,7 @@ export default async function getApolloServer({
     }
   }
 
-  const models = getModels(dbConfig)
+  const models = getModels({dbConfig, sequelizeConnection})
 
   const types = generateModelTypes(models)
 

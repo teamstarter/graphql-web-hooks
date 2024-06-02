@@ -1,13 +1,13 @@
-import {
+import type {
+  InAndOutTypes,
   ModelDeclarationType,
   SequelizeModels,
-  InAndOutTypes,
-} from '@teamstarter/graphql-sequelize-generator/types'
+} from '@teamstarter/graphql-sequelize-generator/src/types/types'
 
 export default function WebhookConfiguration(
   graphqlTypes: InAndOutTypes,
   models: SequelizeModels
-): ModelDeclarationType {
+): ModelDeclarationType<any> {
   return {
     model: models.eventType,
     actions: ['list', 'update', 'create', 'delete'],
