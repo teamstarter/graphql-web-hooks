@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/teamstarter/graphql-web-hooks/compare/v2.1.0...v3.0.0) (2024-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **database:** Upgrade to the last version of graphql-sequelize-generator and change the getModels signature.
+
+### Features
+
+* **database:** Allow to provide a sequelizeInstance instead of a config. ([ec1ba64](https://github.com/teamstarter/graphql-web-hooks/commit/ec1ba64180b7b91c46e6c54bef587a892bf05f46))
+
 ## [2.1.0](https://github.com/teamstarter/graphql-web-hooks/compare/v2.0.1...v2.1.0) (2023-10-12)
 
 
