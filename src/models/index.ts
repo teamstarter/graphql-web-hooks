@@ -17,6 +17,7 @@ function initDb({dbConfig, sequelizeInstance}: any) {
   db = {}
 
   if (
+    dbConfig &&
     typeof dbConfig.use_env_variable !== 'undefined' &&
     dbConfig.use_env_variable && 
     !sequelizeInstance

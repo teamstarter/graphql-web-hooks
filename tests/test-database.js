@@ -126,7 +126,7 @@ const middlewareContext = async (req, res, next) => {
   next()
 }
 
-exports.getNewServer = async () => {
+exports.getNewServer = async (sequelizeInstance) => {
   const app = express()
   const httpServer = http.createServer(
     {
@@ -146,7 +146,13 @@ exports.getNewServer = async () => {
   })
   const pubSubInstance = new PubSub()
 
-  const server = await getApolloServer({
+  const server = sequelizeInstance ? await getApolloServer({
+    sequelizeInstance,
+    getMetadataFromContext,
+    pubSubInstance,
+    wsServer,
+    apolloServerOptions: {},
+  }): await getApolloServer({
     dbConfig,
     getMetadataFromContext,
     pubSubInstance,
