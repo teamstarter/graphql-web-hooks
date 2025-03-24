@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/teamstarter/graphql-web-hooks/compare/v3.1.2...v3.2.0) (2025-03-24)
+
+
+### Features
+
+* **GSG:** Updgrate to GSG 9.0.1 ([0bb4723](https://github.com/teamstarter/graphql-web-hooks/commit/0bb472399ff94d08827f29f164da96712fcbbcf3))
+* **SequelizeGeneratorPackage:** package updated ([4c39b7d](https://github.com/teamstarter/graphql-web-hooks/commit/4c39b7d420e1f53476f60bc201238a08bd0f2313))
+
+
+### Bug Fixes
+
+* **events:** "callWebhook" function and Add "hasWebhookForEvenType" function ([5e4a278](https://github.com/teamstarter/graphql-web-hooks/commit/5e4a27812a212b45262a490f49d64ec9967b8c65))
+
 ### [3.1.2](https://github.com/teamstarter/graphql-web-hooks/compare/v3.1.1...v3.1.2) (2024-06-04)
 
 
