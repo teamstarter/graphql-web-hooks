@@ -1,8 +1,8 @@
-import {
+import type {
+  InAndOutTypes,
   ModelDeclarationType,
   SequelizeModels,
-  InAndOutTypes,
-} from '@teamstarter/graphql-sequelize-generator/types'
+} from '@teamstarter/graphql-sequelize-generator/src/types/types'
 import { Op } from 'sequelize'
 
 export default function WebhookConfiguration(
@@ -10,7 +10,7 @@ export default function WebhookConfiguration(
   models: SequelizeModels,
   getMetadataFromContext: Function,
   hook: any
-): ModelDeclarationType {
+): ModelDeclarationType<any> {
   return {
     model: models.webhook,
     actions: ['list', 'update', 'create', 'delete', 'count'],

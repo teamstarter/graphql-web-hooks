@@ -978,10 +978,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@teamstarter/graphql-sequelize-generator@8.3.0":
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/@teamstarter/graphql-sequelize-generator/-/graphql-sequelize-generator-8.3.0.tgz#42520f7950b0703fe600cdd91f06a7e648de27ec"
-  integrity sha512-rQUn/TA0jMQ+FY+R776Daqu+0r2j828PVg8ABO+7XnxfEdzSqNmXuJCbrB14yO3VGIbzCQHRNjiZj5W2mjYQ6A==
+"@teamstarter/graphql-sequelize-generator@8.7.4":
+  version "8.7.4"
+  resolved "https://registry.yarnpkg.com/@teamstarter/graphql-sequelize-generator/-/graphql-sequelize-generator-8.7.4.tgz#747fefa86ba8a80bf35a08d190e4a68fd82ca10c"
+  integrity sha512-bJ2yx+z+LodIC87oFZtl4+PYu8HyZ6JBblhxIZ216JLFxPGJUAyzPMd3rT1/bzh4RANMO6vtrhBGa+7HVqNuxw==
   dependencies:
     "@apollo/server" "^4.1.1"
     "@graphql-tools/schema" "^9.0.10"

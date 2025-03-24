@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.2](https://github.com/teamstarter/graphql-web-hooks/compare/v3.1.1...v3.1.2) (2024-06-04)
+
+
+### Bug Fixes
+
+* **CI:** Upgrade GSG to fix type error. ([9940275](https://github.com/teamstarter/graphql-web-hooks/commit/9940275cc74ec81be75feff395d365cc613db8a0))
+
+### [3.1.1](https://github.com/teamstarter/graphql-web-hooks/compare/v3.1.0...v3.1.1) (2024-06-02)
+
+
+### Bug Fixes
+
+* **db:** Fix instance option. ([0f5a3ac](https://github.com/teamstarter/graphql-web-hooks/commit/0f5a3ac87dfd60bb732bd68d5931f981308374a0))
+
+## [3.1.0](https://github.com/teamstarter/graphql-web-hooks/compare/v3.0.1...v3.1.0) (2024-06-02)
+
+
+### Features
+
+* **doc:** Avoid missing builds by adding the step to the test one. ([0ed9277](https://github.com/teamstarter/graphql-web-hooks/commit/0ed9277fe3abb8a1d8003a90bb623cb9d97c24a5))
+
+
+### Bug Fixes
+
+* **db:** Fix crash for real this time :) ([07519b0](https://github.com/teamstarter/graphql-web-hooks/commit/07519b0c57516dde0525b93db604703a32af9afd))
+
+### [3.0.1](https://github.com/teamstarter/graphql-web-hooks/compare/v3.0.0...v3.0.1) (2024-06-02)
+
+
+### Bug Fixes
+
+* **db:** Fix crash and add a new test. ([fc11240](https://github.com/teamstarter/graphql-web-hooks/commit/fc1124018a34f2c392703aa14315ed275a544cb4))
+
+## [3.0.0](https://github.com/teamstarter/graphql-web-hooks/compare/v2.1.0...v3.0.0) (2024-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **database:** Upgrade to the last version of graphql-sequelize-generator and change the getModels signature.
+
+### Features
+
+* **database:** Allow to provide a sequelizeInstance instead of a config. ([ec1ba64](https://github.com/teamstarter/graphql-web-hooks/commit/ec1ba64180b7b91c46e6c54bef587a892bf05f46))
+
+## [2.1.0](https://github.com/teamstarter/graphql-web-hooks/compare/v2.0.1...v2.1.0) (2023-10-12)
+
+
+### Features
+
+* **SequelizeGeneratorPackage:** package updated ([#12](https://github.com/teamstarter/graphql-web-hooks/issues/12)) ([e5b67c3](https://github.com/teamstarter/graphql-web-hooks/commit/e5b67c33b535dff544af3afc317b0d01e92666dd))
+
 ### [2.0.1](https://github.com/teamstarter/graphql-web-hooks/compare/v2.0.0...v2.0.1) (2023-06-29)
 
 ## [2.0.0](https://github.com/teamstarter/graphql-web-hooks/compare/v1.4.1...v2.0.0) (2023-01-31)

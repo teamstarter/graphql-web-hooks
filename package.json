@@ -1,6 +1,6 @@
 {
   "name": "@teamstarter/graphql-web-hook",
-  "version": "2.0.1",
+  "version": "3.1.2",
   "main": "./lib/index.js",
   "bin": {
     "gwh": "./lib/gwh.js"
@@ -34,7 +34,7 @@
     "@types/spdy": "^3.4.4",
     "express": "^4.18.2",
     "graphql-relay": "^0.10.0",
-    "@teamstarter/graphql-sequelize-generator": "8.3.0",
+    "@teamstarter/graphql-sequelize-generator": "8.7.4",
     "jest": "^27.0.4",
     "pm2": "^5.1.0",
     "prettier": "^2.7.1",
@@ -55,13 +55,13 @@
     "@apollo/server": "^4.1.1",
     "graphql": "^16.6.0",
     "graphql-relay": "^0.10.0",
-    "@teamstarter/graphql-sequelize-generator": "8.3.0",
+    "@teamstarter/graphql-sequelize-generator": "8.7.3",
     "graphql-sequelize": "^9.4.0",
     "sequelize": "^6.3.5"
   },
   "scripts": {
     "build": "tsc --lib es2019,dom --esModuleInterop --outDir ./lib ./src/**/*.ts ./src/*.ts",
-    "test": "PORT=3332 jest --runInBand --ci --forceExit --verbose",
+    "test": "yarn build && PORT=3332 jest --runInBand --ci --forceExit --verbose",
     "start": "node ./tests/server.js",
     "gwh": "node ./lib/gwh.js",
     "release": "standard-version"

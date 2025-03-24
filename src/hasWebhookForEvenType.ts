@@ -1,9 +1,9 @@
-import { Event } from './types'
 import getModels from './models'
+import { Event } from './types'
 
 export default function getHasWebhookForEvenType(getMetadataFromContext: any) {
   return async function hasWebhookForEvenType({ eventType, context }: Event) {
-    const models = getModels({})
+    const models = getModels({dbConfig: {}})
     const webhooks = await models.webhook.findAll({
       where: {
         securityMetadata: getMetadataFromContext(context),

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test server options Check the server can be initialize with a sequelize connection already connected. 1`] = `
+Object {
+  "webhook": Array [
+    Object {
+      "headers": Array [
+        Object {
+          "key": "header-key-1",
+          "value": "header-value-1",
+        },
+        Object {
+          "key": "header-key-2",
+          "value": "header-value-2",
+        },
+      ],
+      "url": "https://www.google.com",
+    },
+    Object {
+      "headers": Array [],
+      "url": "https://www.google.com",
+    },
+  ],
+}
+`;

@@ -25,7 +25,7 @@ const {
 const { getMetadataFromContext } = require('./tools')
 var dbConfig = require(path.join(__dirname, '/sqliteTestConfig.js')).test
 
-const models = getModels(dbConfig)
+const models = getModels({dbConfig})
 const sequelize = models.sequelize // sequelize is the instance of the db
 
 /**
@@ -126,7 +126,7 @@ const middlewareContext = async (req, res, next) => {
   next()
 }
 
-exports.getNewServer = async () => {
+exports.getNewServer = async (sequelizeInstance) => {
   const app = express()
   const httpServer = http.createServer(
     {
@@ -146,7 +146,13 @@ exports.getNewServer = async () => {
   })
   const pubSubInstance = new PubSub()
 
-  const server = await getApolloServer({
+  const server = sequelizeInstance ? await getApolloServer({
+    sequelizeInstance,
+    getMetadataFromContext,
+    pubSubInstance,
+    wsServer,
+    apolloServerOptions: {},
+  }): await getApolloServer({
     dbConfig,
     getMetadataFromContext,
     pubSubInstance,
