@@ -1,6 +1,6 @@
 {
   "name": "@teamstarter/graphql-web-hook",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "main": "./lib/index.js",
   "bin": {
     "gwh": "./lib/gwh.js"
