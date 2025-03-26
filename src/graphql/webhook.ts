@@ -31,14 +31,14 @@ export default function WebhookConfiguration(
         }
 
         if (hook?.list?.before) {
-          hook.list.before(findOptions, args, context)
+          hook.list.before({ findOptions, args, context })
         }
 
         return findOptions
       },
       after: ({ result, args, context, info }) => {
         if (hook?.list?.after) {
-          hook.list.after(result, args, context, info)
+          hook.list.after({ result, args, context, info })
         }
         return result
       },
@@ -46,7 +46,7 @@ export default function WebhookConfiguration(
     create: {
       before: ({ source, args, context }) => {
         if (hook?.create?.before) {
-          hook.create.before(source, args, context)
+          hook.create.before({ source, args, context })
         }
 
         args.webhook.securityMetadata = getMetadataFromContext(context)
@@ -54,7 +54,7 @@ export default function WebhookConfiguration(
       },
       after: async ({ createdEntity: webhook, source, args, context }) => {
         if (hook?.create?.after) {
-          hook.create?.after(webhook, source, args, context)
+          hook.create?.after({ createdEntity: webhook, source, args, context })
         }
 
         return webhook
@@ -63,13 +63,13 @@ export default function WebhookConfiguration(
     update: {
       before: async ({ source, args, context }) => {
         if (hook?.update?.before) {
-          hook.update.before(source, args, context)
+          hook.update.before({ source, args, context })
         }
         return args.webhook
       },
       after: async ({ updatedEntity: webhook, previousPropertiesSnapshot: oldWebhook, source, args, context }) => {
         if (hook?.update?.after) {
-          hook.update.after(webhook, oldWebhook, source, args, context)
+          hook.update.after({ updatedEntity: webhook, previousPropertiesSnapshot: oldWebhook, source, args, context })
         }
         return webhook
       },
@@ -77,14 +77,14 @@ export default function WebhookConfiguration(
     delete: {
       before: async ({ where, source, args, context }) => {
         if (hook?.delete?.before) {
-          hook.delete.before(where, source, args, context)
+          hook.delete.before({ where, source, args, context })
         }
 
         return where
       },
       after: async ({ deletedEntity: deletedWebhook, source, args, context }) => {
         if (hook?.delete?.after) {
-          hook.delete.after(deletedWebhook, source, args, context)
+          hook.delete.after({ deletedEntity: deletedWebhook, source, args, context })
         }
 
         await models.header.destroy({
