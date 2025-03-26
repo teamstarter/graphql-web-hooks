@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/teamstarter/graphql-web-hooks/compare/v3.2.0...v3.3.0) (2025-03-26)
+
+
+### Features
+
+* **hooks:** Update hooks to the new GSG Signature. ([a08a468](https://github.com/teamstarter/graphql-web-hooks/commit/a08a46819b218d560ccec79d8f39630ae0b46753))
+
 ## [3.2.0](https://github.com/teamstarter/graphql-web-hooks/compare/v3.1.2...v3.2.0) (2025-03-24)
 
 
