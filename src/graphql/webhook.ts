@@ -52,7 +52,7 @@ export default function WebhookConfiguration(
         args.webhook.securityMetadata = getMetadataFromContext(context)
         return args.webhook
       },
-      after: async ({ newEntity: webhook, source, args, context }) => {
+      after: async ({ createdEntity: webhook, source, args, context }) => {
         if (hook?.create?.after) {
           hook.create?.after(webhook, source, args, context)
         }
@@ -67,7 +67,7 @@ export default function WebhookConfiguration(
         }
         return args.webhook
       },
-      after: async ({ updatedEntity: webhook, entitySnapshot: oldWebhook, source, args, context }) => {
+      after: async ({ updatedEntity: webhook, previousPropertiesSnapshot: oldWebhook, source, args, context }) => {
         if (hook?.update?.after) {
           hook.update.after(webhook, oldWebhook, source, args, context)
         }
