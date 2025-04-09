@@ -12,12 +12,12 @@ export default function WebhookConfiguration(
     model: models.eventType,
     actions: ['list', 'update', 'create', 'delete'],
     list: {
-      before: ({ findOptions }) => {
+      beforeList: ({ findOptions }) => {
         return findOptions
       },
     },
     create: {
-      before: ({ args }) => {
+      beforeCreate: ({ args }) => {
         return args.eventType
       },
     },

@@ -14,7 +14,7 @@ export default function HeaderConfiguration(
     actions: ['create', 'update', 'delete', 'count'],
     subscriptions: ['update', 'delete'],
     create: {
-      before: async ({ args, context }) => {
+      beforeCreate: async ({ args, context }) => {
         const securityMetadata = getMetadataFromContext(context)
 
         const webhook = await models.webhook.findOne({
